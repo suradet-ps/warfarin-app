@@ -1,136 +1,147 @@
 # Warfarin App
 
-[![Powered by Rust + WASM](https://img.shields.io/badge/Powered_by-Rust_%2B_WASM-CE412B?logo=rust)](https://webassembly.org)
-[![Built with Vue.js](https://img.shields.io/badge/Built_with-Vue.js-4FC08D?logo=vue.js)](https://vuejs.org/)
-[![Deploy with Vercel](https://img.shields.io/badge/Deploy_with-Vercel-000000?logo=vercel)](https://vercel.com)
-
-A modern, high-performance web application for calculating complex Warfarin dosage regimens. This project uniquely combines a **Vue.js** frontend for a reactive user experience with a powerful **Rust-powered WebAssembly (WASM)** core for all logical computations, ensuring maximum performance, safety, and reliability.
-
-The application is designed to assist healthcare professionals by generating multiple, prioritized dosing options based on various parameters like target weekly dose, available pill strengths, and special dosing patterns.
-
-## Features
-
-- **High-Performance Core**: All complex calculations are handled by a Rust-powered WebAssembly module, offering near-native speed directly in the browser.
-- **Advanced Dosing Algorithms**: Generates both uniform and non-uniform (e.g., special dose days, stop days) weekly regimens.
-- **Smart Option Prioritization**: Results are intelligently sorted based on complexity (e.g., minimizing half-pills, using fewer pill strengths).
-- **Automatic Dose Adjustment**: Quickly calculate new weekly doses based on percentage changes from the previous dose.
-- **Appointment-Based Pill Counting**: Calculates the exact number of pills required until the next appointment date.
-- **Flexible Configuration**: Users can select available pill strengths (1mg, 2mg, 3mg, 5mg) and toggle the use of half-pills.
-- **Interactive UI**: A fully reactive interface built with Vue.js for a seamless user experience.
-- **Zero Backend Dependency**: The entire application runs on the client-side, making it fast, private, and easy to deploy on static hosts.
-
-## Medical Disclaimer
-
-**This application is intended for educational and demonstration purposes only.** It must **NOT** be used for actual medical decision-making. Warfarin dosage adjustments must always be performed by a qualified healthcare professional. The developers assume no liability for any misuse of this tool.
-
-## Tech Stack
-
-- **Frontend**: [Vue.js 3](https://vuejs.org/) (with Composition API and Scoped CSS)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Logic Core**: [Rust](https://www.rust-lang.org/) compiled to [WebAssembly](https://webassembly.org/)
-- **Deployment**: [Vercel](https://vercel.com/)
-
-The core principle of this project is to separate concerns: Vue.js manages the user interface and state, while Rust handles the heavy, mission-critical calculations, providing a robust and safe foundation.
-
-## Getting Started
-
-Follow these instructions to get a local copy up and running for development purposes.
-
-### Prerequisites
-
-You need the following tools installed on your system:
-
-1.  **Node.js**: [Download & Install Node.js](https://nodejs.org/) (LTS version recommended).
-2.  **Rust**: Install Rust and Cargo via `rustup`.
-    ```bash
-    # For Linux/macOS/WSL
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    # For Windows, download from https://rustup.rs/
-    ```
-3.  **wasm-pack**: A tool for building Rust-generated WebAssembly.
-    ```bash
-    cargo install wasm-pack
-    ```
-
-### Installation & Local Development
-
-1.  **Clone the repository:**
-
-    ```bash
-    git clone https://github.com/suradet-ps/warfarin-app.git
-    cd warfarin-app
-    ```
-
-2.  **Install frontend dependencies:**
-
-    ```bash
-    bun install
-    ```
-
-3.  **Build the WebAssembly module:**
-    This command compiles the Rust code in the `warfarin_logic` directory into a WASM package inside `warfarin_logic/pkg`.
-
-    ```bash
-    wasm-pack build ./warfarin_logic --target web
-    ```
-
-    _Note: You only need to re-run this command after making changes to the Rust (`.rs`) files._
-
-4.  **Run the development server:**
-    This will start a Vite dev server, typically on `http://localhost:5173`.
-    ```bash
-    bun run dev
-    ```
-
-Open your browser and navigate to the provided local URL to see the app in action!
-
-## Project Structure
-
 ```
-.
-├── warfarin_logic/       # Rust crate for all calculation logic
-│   ├── src/
-│   │   └── lib.rs        # The heart of the application logic
-│   └── Cargo.toml      # Rust dependencies
-│
-├── src/                  # Vue.js application source
-│   ├── components/
-│   └── App.vue           # Main Vue component
-│
-├── public/               # Static assets
-├── vite.config.js        # Vite build configuration
-├── package.json          # Node.js project manifest
-└── README.md             # This file
+██╗    ██╗ █████╗ ██████╗ ███████╗ █████╗ ██████╗ ██╗███╗   ██╗
+██║    ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔══██╗██║████╗  ██║
+██║ █╗ ██║███████║██████╔╝█████╗  ███████║██████╔╝██║██╔██╗ ██║
+██║███╗██║██╔══██║██╔══██╗██╔══╝  ██╔══██║██╔══██╗██║██║╚██╗██║
+╚███╔███╔╝██║  ██║██║  ██║██║     ██║  ██║██║  ██║██║██║ ╚████║
+ ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
 ```
 
-## Deployment
+---
 
-This project is configured for seamless deployment on [Vercel](https://vercel.com/).
+## ◆ PULSE
 
-1.  **Push your code to a GitHub repository.**
-2.  **Import the repository into Vercel.**
-3.  **Configure the build settings:**
-    - **Framework Preset**: `Vite`
-    - **Build Command**: `bun run build`
-    - **Output Directory**: `dist`
-    - **Install Command**: `bun install`
+Warfarin is the dose that cannot be guessed twice. This web app
+generates weekly dosing regimens from target weekly dose, available
+pill strengths, and the patient's special patterns - uniform or
+non-uniform, stop days included - and ranks the options by complexity:
+fewer half-pills first, fewer strengths first. A percentage-change
+adjustment recalculates the week in one input, and appointment-based
+pill counting says exactly how many pills the box needs. The math
+runs in a Rust WebAssembly core; the interface is Vue; the browser is
+the only server.
 
-    **Crucially, the install command must build the WASM module before Vite builds the frontend.**
+| WASM core ▣ | Prioritized ▣ | Adjust ▣ | Pill count ▣ |
+|---|---|---|---|
 
-4.  **Deploy!** Vercel will handle the rest.
+*The dosing loop - generate, rank, adjust, count - is sealed.*
 
-## Contributing
+> Built with Vue 3 + Rust compiled to WASM, deployed to Vercel, with
+> zero backend and zero excuses for a wrong calculation.
+>
+> **suradet-ps**, artifact keeper
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+---
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+## ◆ IGNITION
 
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+Three tools, four commands.
 
-## License
+```
+⟫ rustup update stable
+⟫ cargo install wasm-pack
+⟫ git clone https://github.com/suradet-ps/warfarin-app.git
+⟫ cd warfarin-app
+⟫ bun install
+⟫ wasm-pack build ./warfarin_logic --target web
+⟫ bun run dev
+```
 
-This project is distributed under the MIT License.
+Open [http://localhost:5173](http://localhost:5173).
+
+<details>
+<summary>Notes</summary>
+
+- Node.js LTS and Rust via `rustup` are the prerequisites.
+- Re-run `wasm-pack build` only after changing Rust (`.rs`) files.
+- On Vercel: Framework Preset `Vite`, install command `bun install`,
+  build command `bun run build`, output `dist` - the install command
+  must build the WASM module before Vite builds the frontend.
+
+</details>
+
+---
+
+## ◆ ANATOMY
+
+Two layers, one rule: the interface asks, the Rust core answers.
+
+- **Computes** - `warfarin_logic` is the Rust crate behind the UI:
+  every dose, every split, every regimen is computed in WASM with
+  Rust's safety guarantees - the math that matters runs where the
+  compiler can watch it.
+- **Generates** - weekly regimens in both flavors: uniform weeks and
+  non-uniform weeks with special dose days and stop days - the plan
+  follows the pattern, not a formula.
+- **Ranks** - options are prioritized by complexity: minimize
+  half-pills, minimize distinct pill strengths - the easiest schedule
+  to keep is listed first.
+- **Adjusts** - a percentage change from the previous weekly dose
+  produces the new week in one input - titration without arithmetic.
+- **Counts** - the pill count to the next appointment is computed
+  from the regimen and the calendar - the box is filled correctly
+  before the patient leaves.
+- **Configures** - pill strengths (1, 2, 3, 5 mg) selectable and
+  half-pills toggleable - the calculator respects the pharmacy's
+  actual shelf.
+
+---
+
+## ◆ RITUALS
+
+**The core ceremony** - the weekly regimen:
+
+1. Enter the target weekly dose and the available pill strengths.
+2. Choose the pattern - uniform, or special days and stop days.
+3. Read the ranked options: the most keepable schedule - fewest
+   half-pills sits at the top.
+4. Adjust when the INR moves: enter the percentage change, and the
+   new week answers. Count the pills to the next appointment, and
+   the box is filled.
+
+**The ceremony of the split** - half-pills are a cost, and the
+ranking knows it: the option with the fewest splits leads, and the
+week is as light to keep as the math allows.
+
+**The ceremony of the local calculation** - nothing leaves the
+browser: the WASM core computes on the machine in front of the user,
+and the page works on a static host with no backend to betray it.
+
+---
+
+## ◆ ECHOES
+
+**Where this artifact is heading**
+
+```
+compute ▸ WASM dosing engine, safety-checked math ──────────────────── ▸ sealed
+generate ▸ uniform + non-uniform regimens ──────────────────────────── ▸ sealed
+rank     ▸ complexity-ordered options ──────────────────────────────── ▸ sealed
+adjust   ▸ percentage-change titration ─────────────────────────────── ▸ sealed
+count    ▸ appointment-based pill count ────────────────────────────── ▸ sealed
+```
+
+**Raising the artifact** - the logic lives in `warfarin_logic/src/lib.rs`;
+the interface in `src/components/`. Open an issue first to discuss a
+change.
+
+**Status** - dependencies are maintained through Renovate; deployment
+is a Vercel connect away.
+
+> This application is for educational and demonstration purposes
+> only. It must NOT be used for actual medical decision-making.
+> Warfarin dosage adjustments always belong to a qualified healthcare
+> professional.
+
+---
+
+```
+  ─────────────────────────────────────────
+   The INR does not negotiate.
+   The regimen should not have to guess.
+  ─────────────────────────────────────────
+```
+
+Distributed under the [MIT License](LICENSE).
