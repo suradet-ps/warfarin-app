@@ -16,7 +16,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "pinia": "^3.0.4",
+    "pinia": "^4.0.0",
     "vite-plugin-wasm": "^3.5.0",
     "vue": "^3.5.22",
     "warfarin_logic": "file:./warfarin_logic/pkg"
