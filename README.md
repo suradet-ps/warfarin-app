@@ -1,13 +1,12 @@
 # Warfarin App
 
-```
-██╗    ██╗ █████╗ ██████╗ ███████╗ █████╗ ██████╗ ██╗███╗   ██╗
-██║    ██║██╔══██╗██╔══██╗██╔════╝██╔══██╗██╔══██╗██║████╗  ██║
-██║ █╗ ██║███████║██████╔╝█████╗  ███████║██████╔╝██║██╔██╗ ██║
-██║███╗██║██╔══██║██╔══██╗██╔══╝  ██╔══██║██╔══██╗██║██║╚██╗██║
-╚███╔███╔╝██║  ██║██║  ██║██║     ██║  ██║██║  ██║██║██║ ╚████║
- ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝
-```
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Rust: stable](https://img.shields.io/badge/rust-stable-orange.svg?logo=rust&logoColor=white)](https://www.rust-lang.org/)
+[![WebAssembly](https://img.shields.io/badge/WebAssembly-WASM-654FF0.svg?logo=webassembly&logoColor=white)](https://webassembly.org/)
+[![Vue v3](https://img.shields.io/badge/Vue-v3-4FC08D.svg?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![TypeScript v5](https://img.shields.io/badge/TypeScript-v5-3178C6.svg?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite v8](https://img.shields.io/badge/Vite-v8-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/suradet-ps/warfarin-app/issues)
 
 ---
 
